@@ -1,15 +1,24 @@
 {
-  "name": "Python 3",
-  "image": "mcr.microsoft.com/vscode/devcontainers/python:3.13",
-  "forwardPorts": [8000],
+  "name": "Python 3 with MongoDB",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "forwardPorts": [8000, 27017],
   "postCreateCommand": "pip install -r requirements.txt",
   "customizations": {
     "vscode": {
       "extensions": [
         "GitHub.copilot",
         "ms-python.python",
-        "ms-python.debugpy"
+        "ms-python.debugpy",
+        "mongodb.mongodb-vscode"
       ]
     }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "remoteEnv": {
+    "MONGODB_URI": "mongodb://localhost:27017"
   }
 }
